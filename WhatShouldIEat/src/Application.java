@@ -13,14 +13,16 @@ public class Application
         clips.reset();
         clips.run();
         
-        String evalStr = "(find-all-facts ((?f hobbit)) TRUE)";
+        String evalStr = "(find-all-facts ((?f ui-template)) TRUE)";
 
         PrimitiveValue fv = clips.eval(evalStr);
         if(fv == null) {
         	System.out.println("null");
         }
 		try {
-			System.out.println(fv.get(0).getFactSlot("imie").toString());
+			System.out.println(fv.get(0).getFactSlot("question").toString());
+			List<PrimitiveValue> list = fv.get(0).getFactSlot("answers").multifieldValue();
+			System.out.println(list.get(0));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

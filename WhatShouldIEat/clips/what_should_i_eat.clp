@@ -1,12 +1,15 @@
-(deftemplate hobbit
-(slot imie (type STRING))
-(slot wzrost (type NUMBER))
-(slot waga (type NUMBER))
+(deftemplate ui-template
+	(slot question (type STRING))
+	(multislot answers (type STRING))
+	(multislot image (type STRING))
 )
 
 (deffacts startup
-   (asdf))
+   (start)
+)
 
-(defrule rule1 (asdf) =>
-(assert (hobbit (imie "Bilbo") (wzrost 110) (waga 40)))
+(defrule rule1
+	(start)
+	=>
+	(assert (ui-template (question "Are you in Japan?") (image "") (answers "Yes" "No")))
 )

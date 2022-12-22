@@ -31,7 +31,7 @@ class WhatShouldIEat implements ActionListener
     {
         try
         {
-        	resources = ResourceBundle.getBundle("resources.Resources",Locale.getDefault());
+        	resources = ResourceBundle.getBundle("resources.Resources", Locale.getDefault());
         }
         catch (MissingResourceException mre)
         {
@@ -129,7 +129,7 @@ class WhatShouldIEat implements ActionListener
         }
         choicesPanel.repaint();
 
-        String questionResource = "Your result:";
+        String questionResource = resources.getString("Result");
         if (!lastScreen)
         {
         	question = fv.getFactSlot("question").toString().replace("\"", "");
@@ -137,7 +137,7 @@ class WhatShouldIEat implements ActionListener
         }
         else
         {
-        	nextButton.setText("Restart");
+        	nextButton.setText(resources.getString("Restart"));
         }
 
         wrapLabelText(displayLabel, questionResource);
@@ -208,7 +208,6 @@ class WhatShouldIEat implements ActionListener
         	clips.reset();
         	imagesPanel.removeAll();
         	imagesPanel.repaint();
-        	System.out.println("Reset");
         	nextButton.setText(resources.getString("Next"));
         	imagesPanel.setSize(500, 1000);
         }
@@ -219,7 +218,6 @@ class WhatShouldIEat implements ActionListener
         		return;
         	}
             String assertion = "(" + question + choicesButtons.getSelection().getActionCommand() + ")";
-            //System.out.println(assertion);
             clips.assertString(assertion);
         }
         runWhatShouldIEat();

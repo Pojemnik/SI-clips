@@ -145,7 +145,7 @@
 	(vegetarianNo)
 	(pizzaYes)
 	=>
-	(assert (ui-template (question "parents") (image) (answers)))
+	(assert (ui-template (question "parents") (image) (answers "Yes" "No")))
 )
 
 (defrule parentsEnd

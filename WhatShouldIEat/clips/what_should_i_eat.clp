@@ -623,7 +623,6 @@
 	"drunk_(Y)_8"
 	"drunk_(Y)_9"
 	"drunk_(Y)_10"
-	"drunk_(Y)_11"
 	) (answers)))
 )
 

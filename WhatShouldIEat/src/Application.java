@@ -22,7 +22,7 @@ class WhatShouldIEat implements ActionListener
     ButtonGroup choicesButtons;
     ResourceBundle resources;
     String question;
-
+    boolean lastScreen = false;
     Environment clips;
     boolean isExecuting = false;
     Thread executionThread;
@@ -39,48 +39,20 @@ class WhatShouldIEat implements ActionListener
             return;
         }
 
-        /*================================*/
-        /* Create a new JFrame container. */
-        /*================================*/
-
         JFrame jfrm = new JFrame(resources.getString("WhatShouldIEat"));
-
-        /*=============================*/
-        /* Specify FlowLayout manager. */
-        /*=============================*/
 
         jfrm.getContentPane().setLayout(new GridLayout(4,1));
 
-        /*=================================*/
-        /* Give the frame an initial size. */
-        /*=================================*/
-
         jfrm.setSize(800,800);
 
-        /*=============================================================*/
-        /* Terminate the program when the user closes the application. */
-        /*=============================================================*/
-
         jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        /*===========================*/
-        /* Create the display panel. */
-        /*===========================*/
 
         JPanel displayPanel = new JPanel();
         displayLabel = new JLabel();
         displayPanel.add(displayLabel);
 
-        /*===========================*/
-        /* Create the choices panel. */
-        /*===========================*/
-
         choicesPanel = new JPanel();
         choicesButtons = new ButtonGroup();
-
-        /*===========================*/
-        /* Create the buttons panel. */
-        /*===========================*/
 
         JPanel buttonPanel = new JPanel();
 
@@ -91,19 +63,10 @@ class WhatShouldIEat implements ActionListener
         
         imagesPanel = new JPanel();
 
-
-        /*=====================================*/
-        /* Add the panels to the content pane. */
-        /*=====================================*/
-
         jfrm.getContentPane().add(displayPanel);
         jfrm.getContentPane().add(imagesPanel);
         jfrm.getContentPane().add(choicesPanel);
         jfrm.getContentPane().add(buttonPanel);
-
-        /*========================*/
-        /* Load the holiday program. */
-        /*========================*/
 
         clips = new Environment();
 
@@ -113,45 +76,33 @@ class WhatShouldIEat implements ActionListener
 
         runWhatShouldIEat();
 
-        /*====================*/
-        /* Display the frame. */
-        /*====================*/
-
         jfrm.setVisible(true);
     }
 
-    /****************/
-    /* nextUIState: */
-    /****************/
+
     private void nextUIState() throws Exception
     {
-        /*===========================*/
-        /* Get the current UI state. */
-        /*===========================*/
-
         String evalStr = "(find-all-facts ((?f ui-template)) TRUE)";
 
         PrimitiveValue fv = clips.eval(evalStr).get(0);
 
         PrimitiveValue image = fv.getFactSlot("image");
         
-        boolean lastScreen = false;
-        
-        System.out.println("Size: " + image.size());
-        
         if(image.size() > 0)
         {
         	lastScreen = true;
-            try {
+            try 
+            {
             	for(int i = 0; i < image.size(); i++)
             	{
-            		String path = "../res/Photo/" + image.get(i).toString().replace("\"", "");
-            		System.out.println(path);
+            		String path = "../res/Photo/" + resources.getString(image.get(i).toString().replace("\"", ""));
             		BufferedImage img = ImageIO.read(new File(path));		
             		JLabel pic = new JLabel(new ImageIcon(img));
             		imagesPanel.add(pic);
             	}
-    		} catch (IOException e) {
+    		} 
+            catch (IOException e) 
+            {
     			e.printStackTrace();
     		}
         }
@@ -164,30 +115,30 @@ class WhatShouldIEat implements ActionListener
         	for (int i = 0; i < pv.size(); i++)
         	{
         		PrimitiveValue bv = pv.get(i);
+        		String answer = bv.toString().replace("\"", "");
         		JRadioButton rButton;
 
-        		rButton = new JRadioButton(bv.toString(),false); 
+        		rButton = new JRadioButton(resources.getString(answer),false); 
 
-        		rButton.setActionCommand(bv.toString());
+        		rButton.setActionCommand(answer);
         		choicesPanel.add(rButton);
         		choicesButtons.add(rButton);
         	}
         }
         choicesPanel.repaint();
-        /*====================================*/
-        /* Set the label to the display text. */
-        /*====================================*/
+
+        String questionResource = "Your result:";
         if (!lastScreen)
         {
-        	question = fv.getFactSlot("question").toString();
-        	System.out.println(question);
+        	question = fv.getFactSlot("question").toString().replace("\"", "");
+        	questionResource = resources.getString(question);
         }
         else
         {
-        	question = "Your result:";
+        	nextButton.setText("Restart");
         }
 
-        wrapLabelText(displayLabel, question);
+        wrapLabelText(displayLabel, questionResource);
 
         executionThread = null;
 
@@ -197,22 +148,19 @@ class WhatShouldIEat implements ActionListener
         clips.run();
     }
 
-    /*########################*/
-    /* ActionListener Methods */
-    /*########################*/
-
-    /*******************/
-    /* actionPerformed */
-    /*******************/
-    public void actionPerformed(
-            ActionEvent ae)
+    
+    public void actionPerformed(ActionEvent ae)
     {
         try
-        { onActionPerformed(ae); }
+        { 
+        	onActionPerformed(ae); 
+        }
         catch (Exception e)
-        { e.printStackTrace(); }
+        { 
+        	e.printStackTrace(); 
+        }
     }
-
+    
 
     public void runWhatShouldIEat()
     {
@@ -229,9 +177,13 @@ class WhatShouldIEat implements ActionListener
                                     public void run()
                                     {
                                         try
-                                        { nextUIState(); }
+                                        {
+                                        	nextUIState(); 
+                                        }
                                         catch (Exception e)
-                                        { e.printStackTrace(); }
+                                        { 
+                                        	e.printStackTrace();
+                                        }
                                     }
                                 });
                     }
@@ -244,58 +196,29 @@ class WhatShouldIEat implements ActionListener
         executionThread.start();
     }
 
-    /*********************/
-    /* onActionPerformed */
-    /*********************/
-    public void onActionPerformed(
-            ActionEvent ae) throws Exception
+    public void onActionPerformed(ActionEvent ae) throws Exception
     {
         if (isExecuting) return;
-
-        /*=====================*/
-        /* Get the state-list. */
-        /*=====================*/
-
-        //String evalStr = "(find-all-facts ((?f state-list)) TRUE)";
-        System.out.println(ae.getActionCommand());
-        System.out.println(choicesButtons.getSelection().getActionCommand());
-        String assertion = "(" + question.replace(" ", "-").replace("\"", "").replace("?", "") + choicesButtons.getSelection().getActionCommand().replace("\"", "") + ")";
-        System.out.println(assertion);
-        clips.assertString(assertion);
+        
+        if (lastScreen)
+        {
+        	lastScreen = false;
+        	clips.reset();
+        	imagesPanel.removeAll();
+        	imagesPanel.repaint();
+        	System.out.println("Reset");
+        	nextButton.setText(resources.getString("Next"));
+        }
+        else
+        {
+            String assertion = "(" + question + choicesButtons.getSelection().getActionCommand() + ")";
+            //System.out.println(assertion);
+            clips.assertString(assertion);
+        }
         runWhatShouldIEat();
-        /*=========================*/
-        /* Handle the Next button. */
-        /*=========================*/
-/*
-        if (ae.getActionCommand().equals("Next"))
-        {
-            if (choicesButtons.getButtonCount() == 0)
-            { clips.assertString("(next " + currentID + ")"); }
-            else
-            {
-                clips.assertString("(next " + currentID + " " +
-                        choicesButtons.getSelection().getActionCommand() +
-                        ")");
-            }
 
-            runWhatShouldIEat();
-        }
-        else if (ae.getActionCommand().equals("Restart"))
-        {
-            clips.reset();
-            runWhatShouldIEat();
-        }
-        else if (ae.getActionCommand().equals("Prev"))
-        {
-            clips.assertString("(prev " + currentID + ")");
-            runWhatShouldIEat();
-        }
-        */
     }
 
-    /*****************/
-    /* wrapLabelText */
-    /*****************/
     private void wrapLabelText(
             JLabel label,
             String text)
@@ -307,7 +230,9 @@ class WhatShouldIEat implements ActionListener
         int desiredWidth;
 
         if (textWidth <= containerWidth)
-        { desiredWidth = containerWidth; }
+        {
+        	desiredWidth = containerWidth;
+        }
         else
         {
             int lines = (int) ((textWidth + containerWidth) / containerWidth);
@@ -341,7 +266,9 @@ class WhatShouldIEat implements ActionListener
                 real.append("<br>");
             }
             else
-            { real.append(word); }
+            {
+            	real.append(word); 
+            	}
         }
 
         real.append("</html>");

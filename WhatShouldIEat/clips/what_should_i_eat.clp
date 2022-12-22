@@ -459,25 +459,6 @@
 	(assert (ui-template (question "") (image "Are you playing Wow_(Y)_1.jpg") (answers "")))
 )
 
-(defrule wowEnd
-	(start)
-	(Are-you-in-JapanNo)
-	(Are-you-on-unemploymentNo)
-	(Are-you-in-AlaskaNo)
-	(Are-you-on-a-dietNo)
-	(Are-you-a-vegetarianNo)
-	(Do-you-want-pizzaNo)
-	(Do-you-want-pizzaNo)
-	(Do-you-need-a-good-cleaningNo)
-	(Are-you-Doctor-WhoNo)
-	(Are-you-thirstyNo)
-	(Do-you-want-breakfastNo)
-	(Are-you-JewishNo)
-	(Are-you-playing-WoWYes)
-	=>
-	(assert (ui-template (question "") (image "Are you playing Wow_(Y)_1.jpg") (answers "")))
-)
-
 (defrule foreman
 	(start)
 	(Are-you-in-JapanNo)

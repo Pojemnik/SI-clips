@@ -214,6 +214,10 @@ class WhatShouldIEat implements ActionListener
         }
         else
         {
+        	if(choicesButtons.getSelection() == null)
+        	{
+        		return;
+        	}
             String assertion = "(" + question + choicesButtons.getSelection().getActionCommand() + ")";
             //System.out.println(assertion);
             clips.assertString(assertion);

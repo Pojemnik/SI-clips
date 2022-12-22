@@ -11,21 +11,21 @@
 (defrule japan
 	(start)
 	=>
-	(assert (ui-template (question "Are you in Japan?") (image "") (answers "Yes" "No")))
+	(assert (ui-template (question Japan) (image "") (answers Yes No)))
 )
 
 (defrule japanEnd
 	(start)
 	(Are-you-in-JapanYes)
 	=>
-	(assert (ui-template (question "") (image "Are you in Japan_(Y)_1.jpg") (answers "")))
+	(assert (ui-template (question "") (image Japan_(Y)_1) (answers "")))
 )
 
 (defrule unemployment
 	(start)
 	(Are-you-in-JapanNo)
 	=>
-	(assert (ui-template (question "Are you on unemployment?") (image "") (answers "Yes" "No")))
+	(assert (ui-template (question unemployment) (image "") (answers Yes No)))
 )
 
 (defrule unemploymentEnd
@@ -33,7 +33,7 @@
 	(Are-you-in-JapanNo)
 	(Are-you-on-unemploymentYes)
 	=>
-	(assert (ui-template (question "") (image "Are you on unemployment_(Y)_1.jpg" "Are you on unemployment_(Y)_2.jpg" "Are you on unemployment_(Y)_3.jpg") (answers "")))
+	(assert (ui-template (question "") (image unemployment_(Y)_1 unemployment_(Y)_2 unemployment_(Y)_3) (answers "")))
 )
 
 (defrule alaska
@@ -41,7 +41,7 @@
 	(Are-you-in-JapanNo)
 	(Are-you-on-unemploymentNo)
 	=>
-	(assert (ui-template (question "Are you in Alaska?") (image "") (answers "Yes" "No")))
+	(assert (ui-template (question Alaska) (image "") (answers Yes No)))
 )
 
 (defrule alaskaEnd
@@ -50,7 +50,7 @@
 	(Are-you-on-unemploymentNo)
 	(Are-you-in-AlaskaYes)
 	=>
-	(assert (ui-template (question "") (image "Are you in Alaska_(Y)_1.jpg") (answers "")))
+	(assert (ui-template (question "") (image Alaska_(Y)_1) (answers "")))
 )
 
 (defrule diet
@@ -59,7 +59,7 @@
 	(Are-you-on-unemploymentNo)
 	(Are-you-in-AlaskaNo)
 	=>
-	(assert (ui-template (question "Are you on a diet?") (image "") (answers "Yes" "No")))
+	(assert (ui-template (question diet) (image "") (answers Yes No)))
 )
 
 (defrule dietEnd
@@ -69,7 +69,7 @@
 	(Are-you-in-AlaskaNo)
 	(Are-you-on-a-dietYes)
 	=>
-	(assert (ui-template (question "") (image "Are you on a diet_(Y)_1.jpg" "Are you on a diet_(Y)_2.jpg" "Are you on a diet_(Y)_3.jpg" "Are you on a diet_(Y)_4.jpg" "Are you on a diet_(Y)_5.jpg") (answers "")))
+	(assert (ui-template (question "") (image diet_(Y)_1 diet_(Y)_2 diet_(Y)_3 diet_(Y)_4 diet_(Y)_5) (answers "")))
 )
 
 (defrule vegetarian
@@ -79,7 +79,7 @@
 	(Are-you-in-AlaskaNo)
 	(Are-you-on-a-dietNo)
 	=>
-	(assert (ui-template (question "Are you a vegetarian?") (image "") (answers "Yes" "No")))
+	(assert (ui-template (question vegetarian) (image "") (answers Yes No)))
 )
 
 (defrule vegan
@@ -90,7 +90,7 @@
 	(Are-you-on-a-dietNo)
 	(Are-you-a-vegetarianYes)
 	=>
-	(assert (ui-template (question "Are you vegan?") (image "") (answers "Yes" "No")))
+	(assert (ui-template (question vegan") (image "") (answers Yes No)))
 )
 
 (defrule veganYesEnd
@@ -102,7 +102,7 @@
 	(Are-you-a-vegetarianYes)
 	(Are-you-veganYes)
 	=>
-	(assert (ui-template (question "") (image "vegan_Y_1.png" "vegan_Y_2.png") (answers "")))
+	(assert (ui-template (question "") (image vegan_Y_1 vegan_Y_2) (answers "")))
 )
 
 (defrule veganNoEnd
@@ -114,7 +114,7 @@
 	(Are-you-a-vegetarianYes)
 	(Are-you-veganNo)
 	=>
-	(assert (ui-template (question "") (image "vegan_N_1.png" "vegan_N_2.png") (answers "")))
+	(assert (ui-template (question "") (image vegan_N_1 vegan_N_2) (answers "")))
 )
 
 (defrule pizza
@@ -125,7 +125,7 @@
 	(Are-you-on-a-dietNo)
 	(Are-you-a-vegetarianNo)
 	=>
-	(assert (ui-template (question "Do you want pizza?") (image "") (answers "Yes" "No")))
+	(assert (ui-template (question pizza) (image "") (answers Yes No)))
 )
 
 (defrule parents
@@ -137,7 +137,7 @@
 	(Are-you-a-vegetarianNo)
 	(Do-you-want-pizzaYes)
 	=>
-	(assert (ui-template (question "Are you still living with you parents?") (image "") (answers "")))
+	(assert (ui-template (question parents) (image "") (answers "")))
 )
 
 (defrule parentsEnd
@@ -150,7 +150,7 @@
 	(Do-you-want-pizzaYes)
 	(Are-you-still-living-with-you-parentsYes)
 	=>
-	(assert (ui-template (question "") (image "Are you still living with you parents_(Y)_1.png" "Are you still living with you parents_(Y)_2.png" "Are you still living with you parents_(Y)_3.png" "Are you still living with you parents_(Y)_4.png") (answers "")))
+	(assert (ui-template (question "") (image parents_(Y)_1 parents_(Y)_2 parents_(Y)_3 parents_(Y)_4) (answers "")))
 )
 
 (defrule impress
@@ -163,7 +163,7 @@
 	(Do-you-want-pizzaYes)
 	(Are-you-still-living-with-you-parentsNo)
 	=>
-	(assert (ui-template (question "Are you trying to impress?") (image "") (answers "Yes" "No")))
+	(assert (ui-template (question impress) (image "") (answers Yes No)))
 )
 
 (defrule impressNoEnd
@@ -177,7 +177,7 @@
 	(Are-you-still-living-with-you-parentsNo)
 	(Are-you-trying-to-impressNo)
 	=>
-	(assert (ui-template (question "") (image "Are you trying to impress_(N)_1.jpg" "Are you trying to impress_(N)_2.jpg" "Are you trying to impress_(N)_3.jpg") (answers "")))
+	(assert (ui-template (question "") (image impress_(N)_1 parents_(Y)_2 parents_(Y)_3) (answers "")))
 )
 
 (defrule impressYesEnd
@@ -191,7 +191,7 @@
 	(Are-you-still-living-with-you-parentsNo)
 	(Are-you-trying-to-impressYes)
 	=>
-	(assert (ui-template (question "") (image "Are you trying to impress_(Y)_1.jpg" "Are you trying to impress_(Y)_2.jpg") (answers "")))
+	(assert (ui-template (question "") (image impress_(N)_1 impress_(N)_2) (answers "")))
 )
 
 (defrule cleaning
@@ -203,7 +203,7 @@
 	(Are-you-a-vegetarianNo)
 	(Do-you-want-pizzaNo)
 	=>
-	(assert (ui-template (question "Do you need a good cleaning?") (image "") (answers "Yes" "No")))
+	(assert (ui-template (question cleaning) (image "") (answers Yes No)))
 )
 
 (defrule cleaningEnd
@@ -217,7 +217,7 @@
 	(Do-you-want-pizzaNo)
 	(Do-you-need-a-good-cleaningYes)
 	=>
-	(assert (ui-template (question "") (image "Do you need a good cleaning_(Y)_1.jpg" "Do you need a good cleaning_(Y)_2.jpg" "Do you need a good cleaning_(Y)_3.jpg") (answers "")))
+	(assert (ui-template (question "") (image cleaning_(Y)_1 cleaning_(Y)_2 cleaning_(Y)_3) (answers "")))
 )
 
 (defrule who
@@ -231,7 +231,7 @@
 	(Do-you-want-pizzaNo)
 	(Do-you-need-a-good-cleaningNo)
 	=>
-	(assert (ui-template (question "Are you Doctor Who?") (image "") (answers "Yes" "No")))
+	(assert (ui-template (question Who) (image "") (answers Yes No)))
 )
 
 (defrule whoEnd
@@ -246,7 +246,7 @@
 	(Do-you-need-a-good-cleaningNo)
 	(Are-you-Doctor-WhoYes)
 	=>
-	(assert (ui-template (question "") (image "Are you Doctor Who_(Y)_1.jpg") (answers "")))
+	(assert (ui-template (question "") (image Who_(Y)_1) (answers "")))
 )
 
 (defrule thristy
@@ -261,7 +261,7 @@
 	(Do-you-need-a-good-cleaningNo)
 	(Are-you-Doctor-WhoNo)
 	=>
-	(assert (ui-template (question "Are you thirsty?") (image "") (answers "Yes" "No")))
+	(assert (ui-template (question thirsty) (image "") (answers Yes No)))
 )
 
 (defrule thristyEnd
@@ -277,7 +277,7 @@
 	(Are-you-Doctor-WhoNo)
 	(Are-you-thirstyYes)
 	=>
-	(assert (ui-template (question "") (image "Are you thirsty_(Y)_1.jpg") (answers "")))
+	(assert (ui-template (question "") (image thirsty_(Y)_1) (answers "")))
 )
 
 (defrule breakfast
@@ -293,7 +293,7 @@
 	(Are-you-Doctor-WhoNo)
 	(Are-you-thirstyNo)
 	=>
-	(assert (ui-template (question "Do-you-want-breakfast") (image "") (answers "Yes" "No")))
+	(assert (ui-template (question breakfast) (image "") (answers Yes No)))
 )
 
 (defrule summer
@@ -310,7 +310,7 @@
 	(Are-you-thirstyNo)
 	(Do-you-want-breakfastYes)
 	=>
-	(assert (ui-template (question "Is is summer 2010?") (image "") (answers "Yes" "No")))
+	(assert (ui-template (question 2010) (image "") (answers Yes No)))
 )
 
 (defrule summerEnd
@@ -328,7 +328,7 @@
 	(Do-you-want-breakfastYes)
 	(Is-is-summer-2010No)
 	=>
-	(assert (ui-template (question "") (image "Is is summer 2010_(N)_1.jpg" "Is is summer 2010_(N)_2.jpg" "Is is summer 2010_(N)_3.jpg" "Is is summer 2010_(N)_4.jpg") (answers "")))
+	(assert (ui-template (question "") (image 2010_(N)_1 2010_(N)_2 2010_(N)_3 2010_(N)_4) (answers "")))
 )
 
 (defrule benes
@@ -346,7 +346,7 @@
 	(Do-you-want-breakfastYes)
 	(Is-is-summer-2010Yes)
 	=>
-	(assert (ui-template (question "Are you Elaine Benes?") (image "") (answers "Yes" "No")))
+	(assert (ui-template (question Benes) (image "") (answers Yes No)))
 )
 
 (defrule benesYesEnd
@@ -365,7 +365,7 @@
 	(Is-is-summer-2010Yes)
 	(Are-you-Elaine-BenesYes)
 	=>
-	(assert (ui-template (question "") (image "Are you Elaine Benes_(Y)_1.jpg") (answers "")))
+	(assert (ui-template (question "") (image Benes_(Y)_1) (answers "")))
 )
 
 (defrule benesNoEnd
@@ -384,7 +384,7 @@
 	(Is-is-summer-2010Yes)
 	(Are-you-Elaine-BenesNo)
 	=>
-	(assert (ui-template (question "") (image "Are you Elaine Benes_(N)_1.jpg" "Are you Elaine Benes_(N)_2.jpg") (answers "")))
+	(assert (ui-template (question "") (image Benes_(N)_1 Benes_(N)_2) (answers "")))
 )
 
 (defrule jewish
@@ -401,7 +401,7 @@
 	(Are-you-thirstyNo)
 	(Do-you-want-breakfastNo)
 	=>
-	(assert (ui-template (question "Are you Jewish?") (image "") (answers "Yes" "No")))
+	(assert (ui-template (question Jewish) (image "") (answers Yes No)))
 )
 
 (defrule jewishEnd
@@ -419,7 +419,7 @@
 	(Do-you-want-breakfastNo)
 	(Are-you-JewishYes)
 	=>
-	(assert (ui-template (question "") (image "Are you Jewish_(Y)_1.jpg") (answers "")))
+	(assert (ui-template (question "") (image Jewish_(Y)_1) (answers "")))
 )
 
 (defrule wow
@@ -437,7 +437,7 @@
 	(Do-you-want-breakfastNo)
 	(Are-you-JewishNo)
 	=>
-	(assert (ui-template (question "Are you playing WoW?") (image "") (answers "Yes" "No")))
+	(assert (ui-template (question WoW) (image "") (answers Yes No)))
 )
 
 (defrule wowEnd
@@ -456,7 +456,7 @@
 	(Are-you-JewishNo)
 	(Are-you-playing-WoWYes)
 	=>
-	(assert (ui-template (question "") (image "Are you playing Wow_(Y)_1.jpg") (answers "")))
+	(assert (ui-template (question "") (image Wow_(Y)_1) (answers "")))
 )
 
 (defrule foreman
@@ -475,7 +475,7 @@
 	(Are-you-JewishNo)
 	(Are-you-playing-WoWNo)
 	=>
-	(assert (ui-template (question "Are you using a Foreman?") (image "") (answers "Yes" "No")))
+	(assert (ui-template (question Foreman) (image "") (answers Yes No)))
 )
 
 (defrule foremanEnd
@@ -495,7 +495,7 @@
 	(Are-you-playing-WoWNo)
 	(Are-you-using-a-ForemanYes)
 	=>
-	(assert (ui-template (question "") (image "Are you using a Foreman_(Y)_1.jpg") (answers "")))
+	(assert (ui-template (question "") (image Foreman_(Y)_1) (answers "")))
 )
 
 (defrule dessert
@@ -515,7 +515,7 @@
 	(Are-you-playing-WoWNo)
 	(Are-you-using-a-ForemanNo)
 	=>
-	(assert (ui-template (question "Do you want dessert?") (image "") (answers "Yes" "No")))
+	(assert (ui-template (question dessert) (image "") (answers Yes No)))
 )
 
 (defrule school
@@ -536,7 +536,7 @@
 	(Are-you-using-a-ForemanNo)
 	(Do-you-want-dessertNo)
 	=>
-	(assert (ui-template (question "Did you just get home from school?") (image "") (answers "Yes" "No")))
+	(assert (ui-template (question school) (image "") (answers Yes No)))
 )
 
 (defrule schoolEnd
@@ -558,7 +558,7 @@
 	(Do-you-want-dessertNo)
 	(Did-you-just-get-home-from-schoolYes)
 	=>
-	(assert (ui-template (question "") (image "Did you just get home from school_(Y)_1.jpg" "Did you just get home from school_(Y)_2.jpg" "Did you just get home from school_(Y)_3.jpg") (answers "")))
+	(assert (ui-template (question "") (image school_(Y)_1 school_(Y)_2 school_(Y)_3) (answers "")))
 )
 
 (defrule high
@@ -580,7 +580,7 @@
 	(Do-you-want-dessertNo)
 	(Did-you-just-get-home-from-schoolNo)
 	=>
-	(assert (ui-template (question "Are you high and/or drunk?") (image "") (answers "Yes" "No")))
+	(assert (ui-template (question drunk) (image "") (answers Yes No)))
 )
 
 (defrule highEnd
@@ -604,17 +604,17 @@
 	(Are-you-high-and/or-drunkYes)
 	=>
 	(assert (ui-template (question "") 
-	(image "Are you high and or drunk_(Y)_1.jpg"
-	"Are you high and or drunk_(Y)_2.jpg"
-	"Are you high and or drunk_(Y)_3.jpg"
-	"Are you high and or drunk_(Y)_4.jpg"
-	"Are you high and or drunk_(Y)_5.jpg"
-	"Are you high and or drunk_(Y)_6.jpg"
-	"Are you high and or drunk_(Y)_7.jpg"
-	"Are you high and or drunk_(Y)_8.jpg"
-	"Are you high and or drunk_(Y)_9.jpg"
-	"Are you high and or drunk_(Y)_10.jpg"
-	"Are you high and or drunk_(Y)_11.jpg"
+	(image drunk_(Y)_1
+	drunk_(Y)_2
+	drunk_(Y)_3
+	drunk_(Y)_4
+	drunk_(Y)_5
+	drunk_(Y)_6
+	drunk_(Y)_7
+	drunk_(Y)_8
+	drunk_(Y)_9
+	drunk_(Y)_10
+	drunk_(Y)_11
 	) (answers "")))
 )
 
@@ -638,7 +638,7 @@
 	(Did-you-just-get-home-from-schoolNo)
 	(Are-you-high-and/or-drunkNo)
 	=>
-	(assert (ui-template (question "Do you want ethnic food?") (image "") (answers "Yes" "No")))
+	(assert (ui-template (question food) (image "") (answers Yes No)))
 )
 
 (defrule ethnicEnd
@@ -662,7 +662,7 @@
 	(Are-you-high-and/or-drunkNo)
 	(Do-you-want-ethnic-foodYes)
 	=>
-	(assert (ui-template (question "") (image "Do you want 'ethnic' food_(Y)_1.jpg" "Do you want 'ethnic' food_(Y)_2.jpg" "Do you want 'ethnic' food_(Y)_3.jpg" "Do you want 'ethnic' food_(Y)_4.jpg") (answers "")))
+	(assert (ui-template (question "") (image food_(Y)_1 food_(Y)_2 food_(Y)_3 food_(Y)_4) (answers "")))
 )
 
 (defrule chain
@@ -686,7 +686,7 @@
 	(Are-you-high-and/or-drunkNo)
 	(Do-you-want-ethnic-foodNo)
 	=>
-	(assert (ui-template (question "Do you like chain restaurants?") (image "") (answers "Yes" "No")))
+	(assert (ui-template (question restaurants) (image "") (answers Yes No)))
 )
 
 (defrule chainEnd
@@ -711,7 +711,7 @@
 	(Do-you-want-ethnic-foodNo)
 	(Do-you-like-chain-restaurantsYes)
 	=>
-	(assert (ui-template (question "") (image "Do you like chain restaurants_(Y)_1.jpg" "Do you like chain restaurants_(Y)_2.jpg" "Do you like chain restaurants_(Y)_3.jpg" "Do you like chain restaurants_(Y)_4.jpg") (answers "")))
+	(assert (ui-template (question "") (image restaurants_(Y)_1 restaurants_(Y)_2 restaurants_(Y)_3 restaurants_(Y)_4 ) (answers "")))
 )
 
 (defrule oven
@@ -736,7 +736,7 @@
 	(Do-you-want-ethnic-foodNo)
 	(Do-you-like-chain-restaurantsNo)
 	=>
-	(assert (ui-template (question "Do you know how to pre-heat an oven?") (image "") (answers "Yes" "No")))
+	(assert (ui-template (question oven) (image "") (answers Yes No)))
 )
 
 (defrule ovenYesEnd
@@ -762,7 +762,7 @@
 	(Do-you-like-chain-restaurantsNo)
 	(Do-you-know-how-to-pre-heat-an-ovenYes)
 	=>
-	(assert (ui-template (question "") (image "Do you know how to pre-heat an oven_(Y)_1.jpg" "Do you know how to pre-heat an oven_(Y)_2.jpg" "Do you know how to pre-heat an oven_(Y)_3.jpg" "Do you know how to pre-heat an oven_(Y)_4.jpg") (answers "")))
+	(assert (ui-template (question "") (image oven_(Y)_1 oven_(Y)_2 oven_(Y)_3 oven_(Y)_4) (answers "")))
 )
 
 (defrule ovenNoEnd
@@ -788,7 +788,7 @@
 	(Do-you-like-chain-restaurantsNo)
 	(Do-you-know-how-to-pre-heat-an-ovenNo)
 	=>
-	(assert (ui-template (question "") (image "Do you know how to pre-heat an oven_(N)_1.jpg") (answers "")))
+	(assert (ui-template (question "") (image oven_(N)_1) (answers "")))
 )
 
 (defrule childhood
@@ -809,7 +809,7 @@
 	(Are-you-using-a-ForemanNo)
 	(Do-you-want-dessertYes)
 	=>
-	(assert (ui-template (question "Are you trying to relive childhood?") (image "") (answers "Yes" "No")))
+	(assert (ui-template (question childhood) (image "") (answers Yes No)))
 )
 
 (defrule childhoodEnd
@@ -831,7 +831,7 @@
 	(Do-you-want-dessertYes)
 	(Are-you-trying-to-relive-childhoodYes)
 	=>
-	(assert (ui-template (question "") (image "Are you trying to relive childhood_(Y)_1.jpg" "Are you trying to relive childhood_(Y)_2.jpg" "Are you trying to relive childhood_(Y)_3.jpg") (answers "")))
+	(assert (ui-template (question "") (image childhood_(Y)_1 childhood_(Y)_2 childhood_(Y)_3) (answers "")))
 )
 
 (defrule pie
@@ -853,7 +853,7 @@
 	(Do-you-want-dessertYes)
 	(Are-you-trying-to-relive-childhoodNo)
 	=>
-	(assert (ui-template (question "Do you want pie? Or are you Jim Lavenstein?") (image "") (answers "Yes" "No")))
+	(assert (ui-template (question Jim Lavenstein) (image "") (answers Yes No)))
 )
 
 (defrule pieEnd
@@ -876,7 +876,7 @@
 	(Are-you-trying-to-relive-childhoodNo)
 	(Do-you-want-pie-Or-are-you-Jim-LavensteinYes)
 	=>
-	(assert (ui-template (question "") (image "Do you want pie Or are you Jim Levenstein_(Y)_1.jpg" "Do you want pie Or are you Jim Levenstein_(Y)_2.jpg" "Do you want pie Or are you Jim Levenstein_(Y)_3.jpg" "Do you want pie Or are you Jim Levenstein_(Y)_4.jpg") (answers "")))
+	(assert (ui-template (question "") (image Levenstein_(Y)_1 Levenstein_(Y)_2 Levenstein_(Y)_3 Levenstein_(Y)_4) (answers "")))
 )
 
 (defrule iceCream
@@ -899,7 +899,7 @@
 	(Are-you-trying-to-relive-childhoodNo)
 	(Do-you-want-pie-Or-are-you-Jim-LavensteinNo)
 	=>
-	(assert (ui-template (question "Do you want ice cream?") (image "") (answers "Yes" "No")))
+	(assert (ui-template (question cream) (image "") (answers Yes No)))
 )
 
 (defrule iceCreamEnd
@@ -923,7 +923,7 @@
 	(Do-you-want-pie-Or-are-you-Jim-LavensteinNo)
 	(Do-you-want-ice-creamNo)
 	=>
-	(assert (ui-template (question "") (image "Do you want ice cream_(N)_1.jpg" "Do you want ice cream_(N)_2.jpg" "Do you want ice cream_(N)_3.jpg" "Do you want ice cream_(N)_4.jpg") (answers "")))
+	(assert (ui-template (question "") (image cream_(N)_1 cream_(N)_2 cream_(N)_3 cream_(N)_4) (answers "")))
 )
 
 (defrule lactose
@@ -947,7 +947,7 @@
 	(Do-you-want-pie-Or-are-you-Jim-LavensteinNo)
 	(Do-you-want-ice-creamYes)
 	=>
-	(assert (ui-template (question "Are you lactose intolerant?") (image "") (answers "Yes" "No")))
+	(assert (ui-template (question intolerant) (image "") (answers Yes No)))
 )
 
 (defrule lactoseEnd
@@ -972,7 +972,7 @@
 	(Do-you-want-ice-creamYes)
 	(Are-you-lactose-intolerantYes)
 	=>
-	(assert (ui-template (question "") (image "Are you lactose intolerant_(Y)_1.jpg") (answers "")))
+	(assert (ui-template (question "") (image intolerant_(Y)_1) (answers "")))
 )
 
 (defrule spoon
@@ -997,7 +997,7 @@
 	(Do-you-want-ice-creamYes)
 	(Are-you-lactose-intolerantNo)
 	=>
-	(assert (ui-template (question "Do you have a spoon?") (image "") (answers "Yes" "No")))
+	(assert (ui-template (question spoon) (image "") (answers Yes No)))
 )
 
 (defrule spoonYesEnd
@@ -1023,7 +1023,13 @@
 	(Are-you-lactose-intolerantNo)
 	(Do-you-have-a-spoonYes)
 	=>
-	(assert (ui-template (question "") (image "Do you have a spoon_(Y)_1.jpg" "Do you have a spoon_(Y)_2.jpg" "Do you have a spoon_(Y)_3.jpg" "Do you have a spoon_(Y)_4.jpg" "Do you have a spoon_(Y)_5.jpg" "Do you have a spoon_(Y)_6.jpg") (answers "")))
+	(assert (ui-template (question "") (image 
+	spoon_(Y)_1
+	spoon_(Y)_2
+	spoon_(Y)_3
+	spoon_(Y)_4
+	spoon_(Y)_5
+	spoon_(Y)_6) (answers "")))
 )
 
 (defrule spoonYesEnd
@@ -1049,5 +1055,9 @@
 	(Are-you-lactose-intolerantNo)
 	(Do-you-have-a-spoonNo)
 	=>
-	(assert (ui-template (question "") (image "Do you have a spoon_(N)_1.jpg" "Do you have a spoon_(N)_2.jpg" "Do you have a spoon_(N)_3.jpg" "Do you have a spoon_(N)_4.jpg") (answers "")))
+	(assert (ui-template (question "") (image 
+	spoon_(N)_1
+	spoon_(N)_2
+	spoon_(N)_3
+	spoon_(N)_4") (answers "")))
 )

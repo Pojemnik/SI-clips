@@ -604,17 +604,18 @@
 	(drunkYes)
 	=>
 	(assert (ui-template (question "") 
-	(image drunk_(Y)_1
-	drunk_(Y)_2
-	drunk_(Y)_3
-	drunk_(Y)_4
-	drunk_(Y)_5
-	drunk_(Y)_6
-	drunk_(Y)_7
-	drunk_(Y)_8
-	drunk_(Y)_9
-	drunk_(Y)_10
-	drunk_(Y)_11
+	(image 
+	"drunk_(Y)_1"
+	"drunk_(Y)_2"
+	"drunk_(Y)_3"
+	"drunk_(Y)_4"
+	"drunk_(Y)_5"
+	"drunk_(Y)_6"
+	"drunk_(Y)_7"
+	"drunk_(Y)_8"
+	"drunk_(Y)_9"
+	"drunk_(Y)_10"
+	"drunk_(Y)_11"
 	) (answers)))
 )
 
@@ -662,7 +663,12 @@
 	(drunkNo)
 	(foodYes)
 	=>
-	(assert (ui-template (question "") (image food_(Y)_1 food_(Y)_2 food_(Y)_3 food_(Y)_4) (answers)))
+	(assert (ui-template (question "") (image 
+	"food_(Y)_1"
+	"food_(Y)_2"
+	"food_(Y)_3"
+	"food_(Y)_4"
+	) (answers)))
 )
 
 (defrule chain
@@ -711,7 +717,13 @@
 	(foodNo)
 	(restaurantsYes)
 	=>
-	(assert (ui-template (question "") (image restaurants_(Y)_1 restaurants_(Y)_2 restaurants_(Y)_3 restaurants_(Y)_4 ) (answers)))
+	(assert (ui-template (question "") 
+	(image 
+	"restaurants_(Y)_1"
+	"restaurants_(Y)_2" 
+	"restaurants_(Y)_3"
+	"restaurants_(Y)_4"
+	) (answers)))
 )
 
 (defrule oven
@@ -762,7 +774,12 @@
 	(restaurantsNo)
 	(ovenYes)
 	=>
-	(assert (ui-template (question "") (image oven_(Y)_1 oven_(Y)_2 oven_(Y)_3 oven_(Y)_4) (answers)))
+	(assert (ui-template (question "") 
+	(image 
+	"oven_(Y)_1"
+	"oven_(Y)_2" 
+	"oven_(Y)_3" 
+	"oven_(Y)_4") (answers)))
 )
 
 (defrule ovenNoEnd
@@ -788,7 +805,7 @@
 	(restaurantsNo)
 	(ovenNo)
 	=>
-	(assert (ui-template (question "") (image oven_(N)_1) (answers)))
+	(assert (ui-template (question "") (image "oven_(N)_1") (answers)))
 )
 
 (defrule childhood
@@ -831,7 +848,11 @@
 	(dessertYes)
 	(childhoodYes)
 	=>
-	(assert (ui-template (question "") (image childhood_(Y)_1 childhood_(Y)_2 childhood_(Y)_3) (answers)))
+	(assert (ui-template (question "") 
+	(image 
+	"childhood_(Y)_1" 
+	"childhood_(Y)_2" 
+	"childhood_(Y)_3") (answers)))
 )
 
 (defrule pie
@@ -876,7 +897,7 @@
 	(childhoodNo)
 	(LavensteinYes)
 	=>
-	(assert (ui-template (question "") (image Levenstein_(Y)_1 Levenstein_(Y)_2 Levenstein_(Y)_3 Levenstein_(Y)_4) (answers)))
+	(assert (ui-template (question "") (image "Levenstein_(Y)_1" "Levenstein_(Y)_2" "Levenstein_(Y)_3" "Levenstein_(Y)_4") (answers)))
 )
 
 (defrule iceCream

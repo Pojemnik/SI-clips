@@ -11,21 +11,21 @@
 (defrule japan
 	(start)
 	=>
-	(assert (ui-template (question Japan) (image "") (answers Yes No)))
+	(assert (ui-template (question Japan) (image) (answers Yes No)))
 )
 
 (defrule japanEnd
 	(start)
 	(JapanYes)
 	=>
-	(assert (ui-template (question "") (image Japan_(Y)_1) (answers "")))
+	(assert (ui-template (question "") ("image Japan_(Y)_1") (answers)))
 )
 
 (defrule unemployment
 	(start)
 	(JapanNo)
 	=>
-	(assert (ui-template (question unemployment) (image "") (answers Yes No)))
+	(assert (ui-template (question unemployment) (image) (answers Yes No)))
 )
 
 (defrule unemploymentEnd
@@ -33,7 +33,7 @@
 	(JapanNo)
 	(unemploymentYes)
 	=>
-	(assert (ui-template (question "") (image unemployment_(Y)_1 unemployment_(Y)_2 unemployment_(Y)_3) (answers "")))
+	(assert (ui-template (question "") ("image unemployment_(Y)_1" "unemployment_(Y)_2" "unemployment_(Y)_3") (answers)))
 )
 
 (defrule alaska
@@ -41,7 +41,7 @@
 	(JapanNo)
 	(unemploymentNo)
 	=>
-	(assert (ui-template (question Alaska) (image "") (answers Yes No)))
+	(assert (ui-template (question Alaska) (image) (answers Yes No)))
 )
 
 (defrule alaskaEnd
@@ -50,7 +50,7 @@
 	(unemploymentNo)
 	(AlaskaYes)
 	=>
-	(assert (ui-template (question "") (image Alaska_(Y)_1) (answers "")))
+	(assert (ui-template (question "") ("image Alaska_(Y)_1") (answers)))
 )
 
 (defrule diet
@@ -59,7 +59,7 @@
 	(unemploymentNo)
 	(AlaskaNo)
 	=>
-	(assert (ui-template (question diet) (image "") (answers Yes No)))
+	(assert (ui-template (question diet) (image) (answers Yes No)))
 )
 
 (defrule dietEnd
@@ -69,7 +69,7 @@
 	(AlaskaNo)
 	(dietYes)
 	=>
-	(assert (ui-template (question "") (image diet_(Y)_1 diet_(Y)_2 diet_(Y)_3 diet_(Y)_4 diet_(Y)_5) (answers "")))
+	(assert (ui-template (question "") ("image diet_(Y)_1" "diet_(Y)_2" "diet_(Y)_3" "diet_(Y)_4" "diet_(Y)_5") (answers)))
 )
 
 (defrule vegetarian
@@ -79,7 +79,7 @@
 	(AlaskaNo)
 	(dietNo)
 	=>
-	(assert (ui-template (question vegetarian) (image "") (answers Yes No)))
+	(assert (ui-template (question vegetarian) (image) (answers Yes No)))
 )
 
 (defrule vegan
@@ -90,7 +90,7 @@
 	(dietNo)
 	(vegetarianYes)
 	=>
-	(assert (ui-template (question vegan") (image "") (answers Yes No)))
+	(assert (ui-template (question vegan") (image) (answers Yes No)))
 )
 
 (defrule veganYesEnd
@@ -102,7 +102,7 @@
 	(vegetarianYes)
 	(veganYes)
 	=>
-	(assert (ui-template (question "") (image vegan_Y_1 vegan_Y_2) (answers "")))
+	(assert (ui-template (question "") (image "vegan_Y_1" "vegan_Y_2") (answers)))
 )
 
 (defrule veganNoEnd
@@ -114,7 +114,7 @@
 	(vegetarianYes)
 	(veganNo)
 	=>
-	(assert (ui-template (question "") (image vegan_N_1 vegan_N_2) (answers "")))
+	(assert (ui-template (question "") (image "vegan_N_1" "vegan_N_2") (answers)))
 )
 
 (defrule pizza
@@ -125,7 +125,7 @@
 	(dietNo)
 	(vegetarianNo)
 	=>
-	(assert (ui-template (question pizza) (image "") (answers Yes No)))
+	(assert (ui-template (question pizza) (image) (answers Yes No)))
 )
 
 (defrule parents
@@ -137,7 +137,7 @@
 	(vegetarianNo)
 	(pizzaYes)
 	=>
-	(assert (ui-template (question parents) (image "") (answers "")))
+	(assert (ui-template (question parents) (image) (answers)))
 )
 
 (defrule parentsEnd
@@ -150,7 +150,7 @@
 	(pizzaYes)
 	(parentsYes)
 	=>
-	(assert (ui-template (question "") (image parents_(Y)_1 parents_(Y)_2 parents_(Y)_3 parents_(Y)_4) (answers "")))
+	(assert (ui-template (question "") (image "parents_(Y)_1" "parents_(Y)_2" "parents_(Y)_3" "parents_(Y)_4") (answers)))
 )
 
 (defrule impress
@@ -163,7 +163,7 @@
 	(pizzaYes)
 	(parentsNo)
 	=>
-	(assert (ui-template (question impress) (image "") (answers Yes No)))
+	(assert (ui-template (question impress) (image) (answers Yes No)))
 )
 
 (defrule impressNoEnd
@@ -177,7 +177,7 @@
 	(parentsNo)
 	(impressNo)
 	=>
-	(assert (ui-template (question "") (image impress_(N)_1 parents_(Y)_2 parents_(Y)_3) (answers "")))
+	(assert (ui-template (question "") (image "impress_(N)_1" "impress_(Y)_2" "impress_(Y)_3") (answers)))
 )
 
 (defrule impressYesEnd
@@ -191,7 +191,7 @@
 	(parentsNo)
 	(impressYes)
 	=>
-	(assert (ui-template (question "") (image impress_(N)_1 impress_(N)_2) (answers "")))
+	(assert (ui-template (question "") (image "impress_(N)_1" "impress_(N)_2") (answers)))
 )
 
 (defrule cleaning
@@ -203,7 +203,7 @@
 	(vegetarianNo)
 	(pizzaNo)
 	=>
-	(assert (ui-template (question cleaning) (image "") (answers Yes No)))
+	(assert (ui-template (question cleaning) (image) (answers Yes No)))
 )
 
 (defrule cleaningEnd
@@ -217,7 +217,7 @@
 	(pizzaNo)
 	(cleaningYes)
 	=>
-	(assert (ui-template (question "") (image cleaning_(Y)_1 cleaning_(Y)_2 cleaning_(Y)_3) (answers "")))
+	(assert (ui-template (question "") (image "cleaning_(Y)_1" "cleaning_(Y)_2" "cleaning_(Y)_3") (answers)))
 )
 
 (defrule who
@@ -231,7 +231,7 @@
 	(pizzaNo)
 	(cleaningNo)
 	=>
-	(assert (ui-template (question Who) (image "") (answers Yes No)))
+	(assert (ui-template (question Who) (image) (answers Yes No)))
 )
 
 (defrule whoEnd
@@ -246,7 +246,7 @@
 	(cleaningNo)
 	(WhoYes)
 	=>
-	(assert (ui-template (question "") (image Who_(Y)_1) (answers "")))
+	(assert (ui-template (question "") (image "Who_(Y)_1") (answers)))
 )
 
 (defrule thristy
@@ -261,7 +261,7 @@
 	(cleaningNo)
 	(WhoNo)
 	=>
-	(assert (ui-template (question thirsty) (image "") (answers Yes No)))
+	(assert (ui-template (question thirsty) (image) (answers Yes No)))
 )
 
 (defrule thristyEnd
@@ -277,7 +277,7 @@
 	(WhoNo)
 	(thirstyYes)
 	=>
-	(assert (ui-template (question "") (image thirsty_(Y)_1) (answers "")))
+	(assert (ui-template (question "") ("image thirsty_(Y)_1") (answers)))
 )
 
 (defrule breakfast
@@ -293,7 +293,7 @@
 	(WhoNo)
 	(thirstyNo)
 	=>
-	(assert (ui-template (question breakfast) (image "") (answers Yes No)))
+	(assert (ui-template (question breakfast) (image) (answers Yes No)))
 )
 
 (defrule summer
@@ -310,7 +310,7 @@
 	(thirstyNo)
 	(breakfastYes)
 	=>
-	(assert (ui-template (question 2010) (image "") (answers Yes No)))
+	(assert (ui-template (question 2010) (image) (answers Yes No)))
 )
 
 (defrule summerEnd
@@ -328,7 +328,7 @@
 	(breakfastYes)
 	(2010No)
 	=>
-	(assert (ui-template (question "") (image 2010_(N)_1 2010_(N)_2 2010_(N)_3 2010_(N)_4) (answers "")))
+	(assert (ui-template (question "") ("image 2010_(N)_1" "2010_(N)_2" "2010_(N)_3" "2010_(N)_4") (answers)))
 )
 
 (defrule benes
@@ -346,7 +346,7 @@
 	(breakfastYes)
 	(2010Yes)
 	=>
-	(assert (ui-template (question Benes) (image "") (answers Yes No)))
+	(assert (ui-template (question Benes) (image) (answers Yes No)))
 )
 
 (defrule benesYesEnd
@@ -365,7 +365,7 @@
 	(2010Yes)
 	(BenesYes)
 	=>
-	(assert (ui-template (question "") (image Benes_(Y)_1) (answers "")))
+	(assert (ui-template (question "") ("image Benes_(Y)_1") (answers)))
 )
 
 (defrule benesNoEnd
@@ -384,7 +384,7 @@
 	(2010Yes)
 	(BenesNo)
 	=>
-	(assert (ui-template (question "") (image Benes_(N)_1 Benes_(N)_2) (answers "")))
+	(assert (ui-template (question "") (image "Benes_(N)_1" "Benes_(N)_2") (answers)))
 )
 
 (defrule jewish
@@ -401,7 +401,7 @@
 	(thirstyNo)
 	(breakfastNo)
 	=>
-	(assert (ui-template (question Jewish) (image "") (answers Yes No)))
+	(assert (ui-template (question Jewish) (image) (answers Yes No)))
 )
 
 (defrule jewishEnd
@@ -419,7 +419,7 @@
 	(breakfastNo)
 	(JewishYes)
 	=>
-	(assert (ui-template (question "") (image Jewish_(Y)_1) (answers "")))
+	(assert (ui-template (question "") (image "Jewish_(Y)_1") (answers)))
 )
 
 (defrule wow
@@ -437,7 +437,7 @@
 	(breakfastNo)
 	(JewishNo)
 	=>
-	(assert (ui-template (question WoW) (image "") (answers Yes No)))
+	(assert (ui-template (question WoW) (image) (answers Yes No)))
 )
 
 (defrule wowEnd
@@ -456,7 +456,7 @@
 	(JewishNo)
 	(WoWYes)
 	=>
-	(assert (ui-template (question "") (image Wow_(Y)_1) (answers "")))
+	(assert (ui-template (question "") ("image Wow_(Y)_1") (answers)))
 )
 
 (defrule foreman
@@ -475,7 +475,7 @@
 	(JewishNo)
 	(WoWNo)
 	=>
-	(assert (ui-template (question Foreman) (image "") (answers Yes No)))
+	(assert (ui-template (question Foreman) (image) (answers Yes No)))
 )
 
 (defrule foremanEnd
@@ -495,7 +495,7 @@
 	(WoWNo)
 	(ForemanYes)
 	=>
-	(assert (ui-template (question "") (image Foreman_(Y)_1) (answers "")))
+	(assert (ui-template (question "") (image "Foreman_(Y)_1") (answers)))
 )
 
 (defrule dessert
@@ -515,7 +515,7 @@
 	(WoWNo)
 	(ForemanNo)
 	=>
-	(assert (ui-template (question dessert) (image "") (answers Yes No)))
+	(assert (ui-template (question dessert) (image) (answers Yes No)))
 )
 
 (defrule school
@@ -536,7 +536,7 @@
 	(ForemanNo)
 	(dessertNo)
 	=>
-	(assert (ui-template (question school) (image "") (answers Yes No)))
+	(assert (ui-template (question school) (image) (answers Yes No)))
 )
 
 (defrule schoolEnd
@@ -558,7 +558,7 @@
 	(dessertNo)
 	(schoolYes)
 	=>
-	(assert (ui-template (question "") (image school_(Y)_1 school_(Y)_2 school_(Y)_3) (answers "")))
+	(assert (ui-template (question "") ("image school_(Y)_1" "school_(Y)_2" "school_(Y)_3") (answers)))
 )
 
 (defrule high
@@ -580,7 +580,7 @@
 	(dessertNo)
 	(schoolNo)
 	=>
-	(assert (ui-template (question drunk) (image "") (answers Yes No)))
+	(assert (ui-template (question drunk) (image) (answers Yes No)))
 )
 
 (defrule highEnd
@@ -615,7 +615,7 @@
 	drunk_(Y)_9
 	drunk_(Y)_10
 	drunk_(Y)_11
-	) (answers "")))
+	) (answers)))
 )
 
 (defrule ethnic
@@ -638,7 +638,7 @@
 	(schoolNo)
 	(drunkNo)
 	=>
-	(assert (ui-template (question food) (image "") (answers Yes No)))
+	(assert (ui-template (question food) (image) (answers Yes No)))
 )
 
 (defrule ethnicEnd
@@ -662,7 +662,7 @@
 	(drunkNo)
 	(foodYes)
 	=>
-	(assert (ui-template (question "") (image food_(Y)_1 food_(Y)_2 food_(Y)_3 food_(Y)_4) (answers "")))
+	(assert (ui-template (question "") (image food_(Y)_1 food_(Y)_2 food_(Y)_3 food_(Y)_4) (answers)))
 )
 
 (defrule chain
@@ -686,7 +686,7 @@
 	(drunkNo)
 	(foodNo)
 	=>
-	(assert (ui-template (question restaurants) (image "") (answers Yes No)))
+	(assert (ui-template (question restaurants) (image) (answers Yes No)))
 )
 
 (defrule chainEnd
@@ -711,7 +711,7 @@
 	(foodNo)
 	(restaurantsYes)
 	=>
-	(assert (ui-template (question "") (image restaurants_(Y)_1 restaurants_(Y)_2 restaurants_(Y)_3 restaurants_(Y)_4 ) (answers "")))
+	(assert (ui-template (question "") (image restaurants_(Y)_1 restaurants_(Y)_2 restaurants_(Y)_3 restaurants_(Y)_4 ) (answers)))
 )
 
 (defrule oven
@@ -736,7 +736,7 @@
 	(foodNo)
 	(restaurantsNo)
 	=>
-	(assert (ui-template (question oven) (image "") (answers Yes No)))
+	(assert (ui-template (question oven) (image) (answers Yes No)))
 )
 
 (defrule ovenYesEnd
@@ -762,7 +762,7 @@
 	(restaurantsNo)
 	(ovenYes)
 	=>
-	(assert (ui-template (question "") (image oven_(Y)_1 oven_(Y)_2 oven_(Y)_3 oven_(Y)_4) (answers "")))
+	(assert (ui-template (question "") (image oven_(Y)_1 oven_(Y)_2 oven_(Y)_3 oven_(Y)_4) (answers)))
 )
 
 (defrule ovenNoEnd
@@ -788,7 +788,7 @@
 	(restaurantsNo)
 	(ovenNo)
 	=>
-	(assert (ui-template (question "") (image oven_(N)_1) (answers "")))
+	(assert (ui-template (question "") (image oven_(N)_1) (answers)))
 )
 
 (defrule childhood
@@ -809,7 +809,7 @@
 	(ForemanNo)
 	(dessertYes)
 	=>
-	(assert (ui-template (question childhood) (image "") (answers Yes No)))
+	(assert (ui-template (question childhood) (image) (answers Yes No)))
 )
 
 (defrule childhoodEnd
@@ -831,7 +831,7 @@
 	(dessertYes)
 	(childhoodYes)
 	=>
-	(assert (ui-template (question "") (image childhood_(Y)_1 childhood_(Y)_2 childhood_(Y)_3) (answers "")))
+	(assert (ui-template (question "") (image childhood_(Y)_1 childhood_(Y)_2 childhood_(Y)_3) (answers)))
 )
 
 (defrule pie
@@ -853,7 +853,7 @@
 	(dessertYes)
 	(childhoodNo)
 	=>
-	(assert (ui-template (question Lavenstein) (image "") (answers Yes No)))
+	(assert (ui-template (question Lavenstein) (image) (answers Yes No)))
 )
 
 (defrule pieEnd
@@ -876,7 +876,7 @@
 	(childhoodNo)
 	(LavensteinYes)
 	=>
-	(assert (ui-template (question "") (image Levenstein_(Y)_1 Levenstein_(Y)_2 Levenstein_(Y)_3 Levenstein_(Y)_4) (answers "")))
+	(assert (ui-template (question "") (image Levenstein_(Y)_1 Levenstein_(Y)_2 Levenstein_(Y)_3 Levenstein_(Y)_4) (answers)))
 )
 
 (defrule iceCream
@@ -899,7 +899,7 @@
 	(childhoodNo)
 	(LavensteinNo)
 	=>
-	(assert (ui-template (question cream) (image "") (answers Yes No)))
+	(assert (ui-template (question cream) (image) (answers Yes No)))
 )
 
 (defrule iceCreamEnd
@@ -923,7 +923,7 @@
 	(LavensteinNo)
 	(creamNo)
 	=>
-	(assert (ui-template (question "") (image cream_(N)_1 cream_(N)_2 cream_(N)_3 cream_(N)_4) (answers "")))
+	(assert (ui-template (question "") (image cream_(N)_1 cream_(N)_2 cream_(N)_3 cream_(N)_4) (answers)))
 )
 
 (defrule lactose
@@ -947,7 +947,7 @@
 	(LavensteinNo)
 	(creamYes)
 	=>
-	(assert (ui-template (question intolerant) (image "") (answers Yes No)))
+	(assert (ui-template (question intolerant) (image) (answers Yes No)))
 )
 
 (defrule lactoseEnd
@@ -972,7 +972,7 @@
 	(creamYes)
 	(intolerantYes)
 	=>
-	(assert (ui-template (question "") (image intolerant_(Y)_1) (answers "")))
+	(assert (ui-template (question "") (image intolerant_(Y)_1) (answers)))
 )
 
 (defrule spoon
@@ -997,7 +997,7 @@
 	(creamYes)
 	(intolerantNo)
 	=>
-	(assert (ui-template (question spoon) (image "") (answers Yes No)))
+	(assert (ui-template (question spoon) (image) (answers Yes No)))
 )
 
 (defrule spoonYesEnd
@@ -1029,7 +1029,7 @@
 	spoon_(Y)_3
 	spoon_(Y)_4
 	spoon_(Y)_5
-	spoon_(Y)_6) (answers "")))
+	spoon_(Y)_6) (answers)))
 )
 
 (defrule spoonYesEnd
@@ -1058,5 +1058,5 @@
 	spoon_(N)_1
 	spoon_(N)_2
 	spoon_(N)_3
-	spoon_(N)_4") (answers "")))
+	spoon_(N)_4") (answers)))
 )

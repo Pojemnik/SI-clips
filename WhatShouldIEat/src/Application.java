@@ -1,7 +1,10 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.text.BreakIterator;
 
 import java.util.Locale;
@@ -14,10 +17,11 @@ class WhatShouldIEat implements ActionListener
 {
     JLabel displayLabel;
     JButton nextButton;
-    JButton prevButton;
     JPanel choicesPanel;
+    JPanel imagesPanel;
     ButtonGroup choicesButtons;
     ResourceBundle resources;
+    String question;
 
     Environment clips;
     boolean isExecuting = false;
@@ -45,13 +49,13 @@ class WhatShouldIEat implements ActionListener
         /* Specify FlowLayout manager. */
         /*=============================*/
 
-        jfrm.getContentPane().setLayout(new GridLayout(3,1));
+        jfrm.getContentPane().setLayout(new GridLayout(4,1));
 
         /*=================================*/
         /* Give the frame an initial size. */
         /*=================================*/
 
-        jfrm.setSize(500,300);
+        jfrm.setSize(800,800);
 
         /*=============================================================*/
         /* Terminate the program when the user closes the application. */
@@ -80,21 +84,20 @@ class WhatShouldIEat implements ActionListener
 
         JPanel buttonPanel = new JPanel();
 
-        prevButton = new JButton(resources.getString("Prev"));
-        prevButton.setActionCommand("Prev");
-        buttonPanel.add(prevButton);
-        prevButton.addActionListener(this);
-
         nextButton = new JButton(resources.getString("Next"));
         nextButton.setActionCommand("Next");
         buttonPanel.add(nextButton);
         nextButton.addActionListener(this);
+        
+        imagesPanel = new JPanel();
+
 
         /*=====================================*/
         /* Add the panels to the content pane. */
         /*=====================================*/
 
         jfrm.getContentPane().add(displayPanel);
+        jfrm.getContentPane().add(imagesPanel);
         jfrm.getContentPane().add(choicesPanel);
         jfrm.getContentPane().add(buttonPanel);
 
@@ -104,9 +107,10 @@ class WhatShouldIEat implements ActionListener
 
         clips = new Environment();
 
-        clips.load("holiday.clp");
+        clips.load("clips/what_should_i_eat.clp");
 
         clips.reset();
+
         runWhatShouldIEat();
 
         /*====================*/
@@ -121,85 +125,76 @@ class WhatShouldIEat implements ActionListener
     /****************/
     private void nextUIState() throws Exception
     {
-        /*=====================*/
-        /* Get the state-list. */
-        /*=====================*/
-
-        String evalStr = "(find-all-facts ((?f state-list)) TRUE)";
-
-        String currentID = clips.eval(evalStr).get(0).getFactSlot("current").toString();
-
         /*===========================*/
         /* Get the current UI state. */
         /*===========================*/
 
-        evalStr = "(find-all-facts ((?f UI-state)) " +
-                "(eq ?f:id " + currentID + "))";
+        String evalStr = "(find-all-facts ((?f ui-template)) TRUE)";
 
         PrimitiveValue fv = clips.eval(evalStr).get(0);
 
-        /*========================================*/
-        /* Determine the Next/Prev button states. */
-        /*========================================*/
-
-        if (fv.getFactSlot("state").toString().equals("final"))
+        PrimitiveValue image = fv.getFactSlot("image");
+        
+        boolean lastScreen = false;
+        
+        System.out.println("Size: " + image.size());
+        
+        if(image.size() > 0)
         {
-            nextButton.setActionCommand("Restart");
-            nextButton.setText(resources.getString("Restart"));
-            prevButton.setVisible(true);
+        	lastScreen = true;
+            try {
+            	for(int i = 0; i < image.size(); i++)
+            	{
+            		String path = "../res/Photo/" + image.get(i).toString().replace("\"", "");
+            		System.out.println(path);
+            		BufferedImage img = ImageIO.read(new File(path));		
+            		JLabel pic = new JLabel(new ImageIcon(img));
+            		imagesPanel.add(pic);
+            	}
+    		} catch (IOException e) {
+    			e.printStackTrace();
+    		}
         }
-        else if (fv.getFactSlot("state").toString().equals("initial"))
-        {
-            nextButton.setActionCommand("Next");
-            nextButton.setText(resources.getString("Next"));
-            prevButton.setVisible(false);
-        }
-        else
-        {
-            nextButton.setActionCommand("Next");
-            nextButton.setText(resources.getString("Next"));
-            prevButton.setVisible(true);
-        }
-
-        /*=====================*/
-        /* Set up the choices. */
-        /*=====================*/
-
         choicesPanel.removeAll();
-        choicesButtons = new ButtonGroup();
-
-        PrimitiveValue pv = fv.getFactSlot("valid-answers");
-
-        String selected = fv.getFactSlot("response").toString();
-
-        for (int i = 0; i < pv.size(); i++)
+    	choicesButtons = new ButtonGroup();
+        if(!lastScreen)
         {
-            PrimitiveValue bv = pv.get(i);
-            JRadioButton rButton;
+        	PrimitiveValue pv = fv.getFactSlot("answers");
 
-            if (bv.toString().equals(selected))
-            { rButton = new JRadioButton(resources.getString(bv.toString()),true); }
-            else
-            { rButton = new JRadioButton(resources.getString(bv.toString()),false); }
+        	for (int i = 0; i < pv.size(); i++)
+        	{
+        		PrimitiveValue bv = pv.get(i);
+        		JRadioButton rButton;
 
-            rButton.setActionCommand(bv.toString());
-            choicesPanel.add(rButton);
-            choicesButtons.add(rButton);
+        		rButton = new JRadioButton(bv.toString(),false); 
+
+        		rButton.setActionCommand(bv.toString());
+        		choicesPanel.add(rButton);
+        		choicesButtons.add(rButton);
+        	}
         }
-
         choicesPanel.repaint();
-
         /*====================================*/
         /* Set the label to the display text. */
         /*====================================*/
+        if (!lastScreen)
+        {
+        	question = fv.getFactSlot("question").toString();
+        	System.out.println(question);
+        }
+        else
+        {
+        	question = "Your result:";
+        }
 
-        String theText = resources.getString(fv.getFactSlot("display").symbolValue());
-
-        wrapLabelText(displayLabel,theText);
+        wrapLabelText(displayLabel, question);
 
         executionThread = null;
 
         isExecuting = false;
+        
+        clips.assertString("(clean)");
+        clips.run();
     }
 
     /*########################*/
@@ -261,18 +256,17 @@ class WhatShouldIEat implements ActionListener
         /* Get the state-list. */
         /*=====================*/
 
-        String evalStr = "(find-all-facts ((?f state-list)) TRUE)";
-
-        String currentID = clips.eval(evalStr).get(0).getFactSlot("current").toString();
-        
-        String question = clips.eval(evalStr).get(0).getFactSlot("question").toString();
-        
-        String image = clips.eval(evalStr).get(0).getFactSlot("image").toString();
-
+        //String evalStr = "(find-all-facts ((?f state-list)) TRUE)";
+        System.out.println(ae.getActionCommand());
+        System.out.println(choicesButtons.getSelection().getActionCommand());
+        String assertion = "(" + question.replace(" ", "-").replace("\"", "").replace("?", "") + choicesButtons.getSelection().getActionCommand().replace("\"", "") + ")";
+        System.out.println(assertion);
+        clips.assertString(assertion);
+        runWhatShouldIEat();
         /*=========================*/
         /* Handle the Next button. */
         /*=========================*/
-
+/*
         if (ae.getActionCommand().equals("Next"))
         {
             if (choicesButtons.getButtonCount() == 0)
@@ -296,6 +290,7 @@ class WhatShouldIEat implements ActionListener
             clips.assertString("(prev " + currentID + ")");
             runWhatShouldIEat();
         }
+        */
     }
 
     /*****************/

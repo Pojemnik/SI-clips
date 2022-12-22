@@ -41,7 +41,7 @@ class WhatShouldIEat implements ActionListener
 
         JFrame jfrm = new JFrame(resources.getString("WhatShouldIEat"));
 
-        jfrm.getContentPane().setLayout(new GridLayout(4,1));
+        jfrm.getContentPane().setLayout(new BoxLayout(jfrm.getContentPane(), BoxLayout.Y_AXIS));
 
         jfrm.setSize(800,800);
 
@@ -62,6 +62,7 @@ class WhatShouldIEat implements ActionListener
         nextButton.addActionListener(this);
         
         imagesPanel = new JPanel();
+        imagesPanel.setLayout(new GridLayout(4,3));
 
         jfrm.getContentPane().add(displayPanel);
         jfrm.getContentPane().add(imagesPanel);
@@ -100,6 +101,7 @@ class WhatShouldIEat implements ActionListener
             		JLabel pic = new JLabel(new ImageIcon(img));
             		imagesPanel.add(pic);
             	}
+            	imagesPanel.revalidate();
     		} 
             catch (IOException e) 
             {
@@ -208,6 +210,7 @@ class WhatShouldIEat implements ActionListener
         	imagesPanel.repaint();
         	System.out.println("Reset");
         	nextButton.setText(resources.getString("Next"));
+        	imagesPanel.setSize(500, 1000);
         }
         else
         {

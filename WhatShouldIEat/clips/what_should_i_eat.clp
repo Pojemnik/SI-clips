@@ -8,7 +8,7 @@
    (start)
 )
 
-(defrule clean-ui
+(defrule remove-old-ui
 	?f1 <- (clean)
 	?f2 <- (ui-template)
 	=>

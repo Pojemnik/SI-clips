@@ -18,6 +18,7 @@ class WhatShouldIEat implements ActionListener
     JPanel choicesPanel;
     ButtonGroup choicesButtons;
     ResourceBundle resources;
+    String question;
 
     Environment clips;
     boolean isExecuting = false;
@@ -104,9 +105,10 @@ class WhatShouldIEat implements ActionListener
 
         clips = new Environment();
 
-        clips.load("holiday.clp");
+        clips.load("clips/what_should_i_eat.clp");
 
         clips.reset();
+
         runWhatShouldIEat();
 
         /*====================*/
@@ -121,26 +123,18 @@ class WhatShouldIEat implements ActionListener
     /****************/
     private void nextUIState() throws Exception
     {
-        /*=====================*/
-        /* Get the state-list. */
-        /*=====================*/
-
-        String evalStr = "(find-all-facts ((?f state-list)) TRUE)";
-
-        String currentID = clips.eval(evalStr).get(0).getFactSlot("current").toString();
-
         /*===========================*/
         /* Get the current UI state. */
         /*===========================*/
 
-        evalStr = "(find-all-facts ((?f UI-state)) " +
-                "(eq ?f:id " + currentID + "))";
+        String evalStr = "(find-all-facts ((?f ui-template)) TRUE)";
 
         PrimitiveValue fv = clips.eval(evalStr).get(0);
 
         /*========================================*/
         /* Determine the Next/Prev button states. */
         /*========================================*/
+        /*
 
         if (fv.getFactSlot("state").toString().equals("final"))
         {
@@ -160,6 +154,7 @@ class WhatShouldIEat implements ActionListener
             nextButton.setText(resources.getString("Next"));
             prevButton.setVisible(true);
         }
+        */
 
         /*=====================*/
         /* Set up the choices. */
@@ -168,19 +163,14 @@ class WhatShouldIEat implements ActionListener
         choicesPanel.removeAll();
         choicesButtons = new ButtonGroup();
 
-        PrimitiveValue pv = fv.getFactSlot("valid-answers");
-
-        String selected = fv.getFactSlot("response").toString();
+        PrimitiveValue pv = fv.getFactSlot("answers");
 
         for (int i = 0; i < pv.size(); i++)
         {
             PrimitiveValue bv = pv.get(i);
             JRadioButton rButton;
 
-            if (bv.toString().equals(selected))
-            { rButton = new JRadioButton(resources.getString(bv.toString()),true); }
-            else
-            { rButton = new JRadioButton(resources.getString(bv.toString()),false); }
+            rButton = new JRadioButton(bv.toString(),false); 
 
             rButton.setActionCommand(bv.toString());
             choicesPanel.add(rButton);
@@ -193,13 +183,17 @@ class WhatShouldIEat implements ActionListener
         /* Set the label to the display text. */
         /*====================================*/
 
-        String theText = resources.getString(fv.getFactSlot("display").symbolValue());
+        question = fv.getFactSlot("question").toString();
+        System.out.println(question);
 
-        wrapLabelText(displayLabel,theText);
+        wrapLabelText(displayLabel, question);
 
         executionThread = null;
 
         isExecuting = false;
+        
+        clips.assertString("(clean)");
+        clips.run();
     }
 
     /*########################*/
@@ -261,18 +255,17 @@ class WhatShouldIEat implements ActionListener
         /* Get the state-list. */
         /*=====================*/
 
-        String evalStr = "(find-all-facts ((?f state-list)) TRUE)";
-
-        String currentID = clips.eval(evalStr).get(0).getFactSlot("current").toString();
-        
-        String question = clips.eval(evalStr).get(0).getFactSlot("question").toString();
-        
-        String image = clips.eval(evalStr).get(0).getFactSlot("image").toString();
-
+        //String evalStr = "(find-all-facts ((?f state-list)) TRUE)";
+        System.out.println(ae.getActionCommand());
+        System.out.println(choicesButtons.getSelection().getActionCommand());
+        String assertion = "(" + question.replace(" ", "-").replace("\"", "").replace("?", "") + choicesButtons.getSelection().getActionCommand().replace("\"", "") + ")";
+        System.out.println(assertion);
+        clips.assertString(assertion);
+        runWhatShouldIEat();
         /*=========================*/
         /* Handle the Next button. */
         /*=========================*/
-
+/*
         if (ae.getActionCommand().equals("Next"))
         {
             if (choicesButtons.getButtonCount() == 0)
@@ -296,6 +289,7 @@ class WhatShouldIEat implements ActionListener
             clips.assertString("(prev " + currentID + ")");
             runWhatShouldIEat();
         }
+        */
     }
 
     /*****************/

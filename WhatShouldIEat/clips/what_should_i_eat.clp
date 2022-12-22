@@ -8,10 +8,18 @@
    (start)
 )
 
+(defrule clean-ui
+	?f1 <- (clean)
+	?f2 <- (ui-template)
+	=>
+	(retract ?f1)
+	(retract ?f2)
+)
+
 (defrule japan
 	(start)
 	=>
-	(assert (ui-template (question Japan) (image) (answers Yes No)))
+	(assert (ui-template (question "Japan") (image) (answers "Yes" "No")))
 )
 
 (defrule japanEnd
@@ -25,7 +33,7 @@
 	(start)
 	(JapanNo)
 	=>
-	(assert (ui-template (question unemployment) (image) (answers Yes No)))
+	(assert (ui-template (question "unemployment") (image) (answers "Yes" "No")))
 )
 
 (defrule unemploymentEnd
@@ -41,7 +49,7 @@
 	(JapanNo)
 	(unemploymentNo)
 	=>
-	(assert (ui-template (question Alaska) (image) (answers Yes No)))
+	(assert (ui-template (question "Alaska") (image) (answers "Yes" "No")))
 )
 
 (defrule alaskaEnd
@@ -59,7 +67,7 @@
 	(unemploymentNo)
 	(AlaskaNo)
 	=>
-	(assert (ui-template (question diet) (image) (answers Yes No)))
+	(assert (ui-template (question "diet") (image) (answers "Yes" "No")))
 )
 
 (defrule dietEnd
@@ -79,7 +87,7 @@
 	(AlaskaNo)
 	(dietNo)
 	=>
-	(assert (ui-template (question vegetarian) (image) (answers Yes No)))
+	(assert (ui-template (question "vegetarian") (image) (answers "Yes" "No")))
 )
 
 (defrule vegan
@@ -90,7 +98,7 @@
 	(dietNo)
 	(vegetarianYes)
 	=>
-	(assert (ui-template (question vegan) (image) (answers Yes No)))
+	(assert (ui-template (question "vegan") (image) (answers "Yes" "No")))
 )
 
 (defrule veganYesEnd
@@ -125,7 +133,7 @@
 	(dietNo)
 	(vegetarianNo)
 	=>
-	(assert (ui-template (question pizza) (image) (answers Yes No)))
+	(assert (ui-template (question "pizza") (image) (answers "Yes" "No")))
 )
 
 (defrule parents
@@ -137,7 +145,7 @@
 	(vegetarianNo)
 	(pizzaYes)
 	=>
-	(assert (ui-template (question parents) (image) (answers)))
+	(assert (ui-template (question "parents") (image) (answers)))
 )
 
 (defrule parentsEnd
@@ -163,7 +171,7 @@
 	(pizzaYes)
 	(parentsNo)
 	=>
-	(assert (ui-template (question impress) (image) (answers Yes No)))
+	(assert (ui-template (question "impress") (image) (answers "Yes" "No")))
 )
 
 (defrule impressNoEnd
@@ -203,7 +211,7 @@
 	(vegetarianNo)
 	(pizzaNo)
 	=>
-	(assert (ui-template (question cleaning) (image) (answers Yes No)))
+	(assert (ui-template (question "cleaning") (image) (answers "Yes" "No")))
 )
 
 (defrule cleaningEnd
@@ -231,7 +239,7 @@
 	(pizzaNo)
 	(cleaningNo)
 	=>
-	(assert (ui-template (question Who) (image) (answers Yes No)))
+	(assert (ui-template (question "Who") (image) (answers "Yes" "No")))
 )
 
 (defrule whoEnd
@@ -261,7 +269,7 @@
 	(cleaningNo)
 	(WhoNo)
 	=>
-	(assert (ui-template (question thirsty) (image) (answers Yes No)))
+	(assert (ui-template (question "thirsty") (image) (answers "Yes" "No")))
 )
 
 (defrule thristyEnd
@@ -293,7 +301,7 @@
 	(WhoNo)
 	(thirstyNo)
 	=>
-	(assert (ui-template (question breakfast) (image) (answers Yes No)))
+	(assert (ui-template (question "breakfast") (image) (answers "Yes" "No")))
 )
 
 (defrule summer
@@ -310,7 +318,7 @@
 	(thirstyNo)
 	(breakfastYes)
 	=>
-	(assert (ui-template (question 2010) (image) (answers Yes No)))
+	(assert (ui-template (question "2010") (image) (answers "Yes" "No")))
 )
 
 (defrule summerEnd
@@ -346,7 +354,7 @@
 	(breakfastYes)
 	(2010Yes)
 	=>
-	(assert (ui-template (question Benes) (image) (answers Yes No)))
+	(assert (ui-template (question "Benes") (image) (answers "Yes" "No")))
 )
 
 (defrule benesYesEnd
@@ -401,7 +409,7 @@
 	(thirstyNo)
 	(breakfastNo)
 	=>
-	(assert (ui-template (question Jewish) (image) (answers Yes No)))
+	(assert (ui-template (question "Jewish") (image) (answers "Yes" "No")))
 )
 
 (defrule jewishEnd
@@ -437,7 +445,7 @@
 	(breakfastNo)
 	(JewishNo)
 	=>
-	(assert (ui-template (question WoW) (image) (answers Yes No)))
+	(assert (ui-template (question "WoW") (image) (answers "Yes" "No")))
 )
 
 (defrule wowEnd
@@ -475,7 +483,7 @@
 	(JewishNo)
 	(WoWNo)
 	=>
-	(assert (ui-template (question Foreman) (image) (answers Yes No)))
+	(assert (ui-template (question "Foreman") (image) (answers "Yes" "No")))
 )
 
 (defrule foremanEnd
@@ -515,7 +523,7 @@
 	(WoWNo)
 	(ForemanNo)
 	=>
-	(assert (ui-template (question dessert) (image) (answers Yes No)))
+	(assert (ui-template (question "dessert") (image) (answers "Yes" "No")))
 )
 
 (defrule school
@@ -536,7 +544,7 @@
 	(ForemanNo)
 	(dessertNo)
 	=>
-	(assert (ui-template (question school) (image) (answers Yes No)))
+	(assert (ui-template (question "school") (image) (answers "Yes" "No")))
 )
 
 (defrule schoolEnd
@@ -580,7 +588,7 @@
 	(dessertNo)
 	(schoolNo)
 	=>
-	(assert (ui-template (question drunk) (image) (answers Yes No)))
+	(assert (ui-template (question "drunk") (image) (answers "Yes" "No")))
 )
 
 (defrule highEnd
@@ -639,7 +647,7 @@
 	(schoolNo)
 	(drunkNo)
 	=>
-	(assert (ui-template (question food) (image) (answers Yes No)))
+	(assert (ui-template (question "food") (image) (answers "Yes" "No")))
 )
 
 (defrule ethnicEnd
@@ -693,7 +701,7 @@
 	(drunkNo)
 	(foodNo)
 	=>
-	(assert (ui-template (question restaurants) (image) (answers Yes No)))
+	(assert (ui-template (question "restaurants") (image) (answers "Yes" "No")))
 )
 
 (defrule chainEnd
@@ -749,7 +757,7 @@
 	(foodNo)
 	(restaurantsNo)
 	=>
-	(assert (ui-template (question oven) (image) (answers Yes No)))
+	(assert (ui-template (question "oven") (image) (answers "Yes" "No")))
 )
 
 (defrule ovenYesEnd
@@ -827,7 +835,7 @@
 	(ForemanNo)
 	(dessertYes)
 	=>
-	(assert (ui-template (question childhood) (image) (answers Yes No)))
+	(assert (ui-template (question "childhood") (image) (answers "Yes" "No")))
 )
 
 (defrule childhoodEnd
@@ -875,7 +883,7 @@
 	(dessertYes)
 	(childhoodNo)
 	=>
-	(assert (ui-template (question Lavenstein) (image) (answers Yes No)))
+	(assert (ui-template (question "Lavenstein") (image) (answers "Yes" "No")))
 )
 
 (defrule pieEnd
@@ -921,7 +929,7 @@
 	(childhoodNo)
 	(LavensteinNo)
 	=>
-	(assert (ui-template (question cream) (image) (answers Yes No)))
+	(assert (ui-template (question "cream") (image) (answers "Yes" "No")))
 )
 
 (defrule iceCreamEnd
@@ -969,7 +977,7 @@
 	(LavensteinNo)
 	(creamYes)
 	=>
-	(assert (ui-template (question intolerant) (image) (answers Yes No)))
+	(assert (ui-template (question "intolerant") (image) (answers "Yes" "No")))
 )
 
 (defrule lactoseEnd
@@ -1019,7 +1027,7 @@
 	(creamYes)
 	(intolerantNo)
 	=>
-	(assert (ui-template (question spoon) (image) (answers Yes No)))
+	(assert (ui-template (question "spoon") (image) (answers "Yes" "No")))
 )
 
 (defrule spoonYesEnd
